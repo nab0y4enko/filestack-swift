@@ -214,6 +214,7 @@ private extension MultipartUpload {
                                   uri: uri,
                                   region: region,
                                   uploadID: uploadID,
+                                  partsAndEtags: partsAndEtags,
                                   useIntelligentIngestion: shouldUseIntelligentIngestion,
                                   retriesLeft: self.maxRetries)
       }
@@ -319,6 +320,7 @@ private extension MultipartUpload {
                             uri: String,
                             region: String,
                             uploadID: String,
+                            partsAndEtags: [Int: String],
                             useIntelligentIngestion: Bool,
                             retriesLeft: Int) {
     let completeOperation = MultipartUploadCompleteOperation(apiKey: apiKey,
@@ -329,6 +331,7 @@ private extension MultipartUpload {
                                                              region: region,
                                                              uploadID: uploadID,
                                                              storeOptions: storeOptions,
+                                                             partsAndEtags: partsAndEtags,
                                                              useIntelligentIngestion: useIntelligentIngestion)
     
     weak var weakCompleteOperation = completeOperation
@@ -351,6 +354,7 @@ private extension MultipartUpload {
                                       uri: uri,
                                       region: region,
                                       uploadID: uploadID,
+                                      partsAndEtags: partsAndEtags,
                                       useIntelligentIngestion: useIntelligentIngestion,
                                       retriesLeft: retriesLeft - 1)
           }
