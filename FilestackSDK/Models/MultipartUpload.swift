@@ -35,6 +35,8 @@ extension MultipartUploadError: LocalizedError {
   
   // MARK: - Public Properties
   
+  public internal(set) var progress: Progress
+
   /// Local URL of file we want to upload.
   public var localURL: URL?
   
@@ -46,7 +48,6 @@ extension MultipartUploadError: LocalizedError {
   
   // MARK: - Private Properties
   
-  private var progress: Progress
   private var shouldAbort: Bool
   private var useIntelligentIngestionIfAvailable: Bool
   

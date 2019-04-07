@@ -13,6 +13,13 @@ import Foundation
   
   // MARK: - Public Properties
   
+  /// Calculated progress
+  public var progress: Progress {
+    let progress = Progress(totalUnitCount: totalSize())
+    progress.completedUnitCount = finishedFilesSize + currentFileSize
+    return progress
+  }
+  
   /// Array of local URLs of files we want to upload.
   public var uploadURLs: [URL] {
     didSet {
@@ -27,11 +34,6 @@ import Foundation
   
   private var finishedFilesSize: Int64
   private var currentFileSize: Int64
-  private var progress: Progress {
-    let progress = Progress(totalUnitCount: totalSize())
-    progress.completedUnitCount = finishedFilesSize + currentFileSize
-    return progress
-  }
   private var shouldAbort: Bool
   private var useIntelligentIngestionIfAvailable: Bool
   private var currentOperation: MultipartUpload?
